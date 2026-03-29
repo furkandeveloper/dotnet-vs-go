@@ -1,0 +1,236 @@
+k6 run k6/cpu-test.js
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: k6/cpu-test.js
+        output: -
+
+     scenarios: (100.00%) 3 scenarios, 75 max VUs, 5m40s max duration (incl. graceful stop):
+              * go_cpu: Up to 50 looping VUs for 1m40s over 3 stages (gracefulRampDown: 30s, gracefulStop: 30s)
+              * dotnet_cpu: Up to 50 looping VUs for 1m40s over 3 stages (gracefulRampDown: 30s, startTime: 1m45s, gracefulStop: 30s)
+              * dotnet11_cpu: Up to 50 looping VUs for 1m40s over 3 stages (gracefulRampDown: 30s, startTime: 3m30s, gracefulStop: 30s)
+
+
+
+  █ THRESHOLDS 
+
+    http_req_duration{scenario:dotnet_cpu}
+    ✓ 'p(95)<1000' p(95)=4.06ms
+
+    http_req_duration{scenario:dotnet11_cpu}
+    ✓ 'p(95)<1000' p(95)=3.58ms
+
+    http_req_duration{scenario:go_cpu}
+    ✓ 'p(95)<1000' p(95)=2.13ms
+
+    http_req_failed{scenario:dotnet_cpu}
+    ✓ 'rate<0.01' rate=0.00%
+
+    http_req_failed{scenario:dotnet11_cpu}
+    ✓ 'rate<0.01' rate=0.00%
+
+    http_req_failed{scenario:go_cpu}
+    ✓ 'rate<0.01' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 7031557 22681.714072/s
+    checks_succeeded...: 100.00% 7031557 out of 7031557
+    checks_failed......: 0.00%   0 out of 7031557
+
+    ✓ status 200
+
+    HTTP
+    http_req_duration..............: avg=1.67ms min=115µs   med=1.39ms max=361.68ms p(90)=2.42ms p(95)=3.07ms
+      { expected_response:true }...: avg=1.67ms min=115µs   med=1.39ms max=361.68ms p(90)=2.42ms p(95)=3.07ms
+      { scenario:dotnet_cpu }......: avg=2.14ms min=187µs   med=1.56ms max=183.13ms p(90)=2.86ms p(95)=4.06ms
+      { scenario:dotnet11_cpu }....: avg=1.86ms min=189µs   med=1.58ms max=361.68ms p(90)=2.8ms  p(95)=3.58ms
+      { scenario:go_cpu }..........: avg=1.26ms min=115µs   med=1.24ms max=64.19ms  p(90)=1.79ms p(95)=2.13ms
+    http_req_failed................: 0.00%   0 out of 7031557
+      { scenario:dotnet_cpu }......: 0.00%   0 out of 1836528
+      { scenario:dotnet11_cpu }....: 0.00%   0 out of 2102171
+      { scenario:go_cpu }..........: 0.00%   0 out of 3092858
+    http_reqs......................: 7031557 22681.714072/s
+
+    EXECUTION
+    iteration_duration.............: avg=1.7ms  min=129.2µs med=1.42ms max=362.86ms p(90)=2.45ms p(95)=3.11ms
+    iterations.....................: 7031557 22681.714072/s
+    vus............................: 1       min=0            max=50
+    vus_max........................: 75      min=75           max=75
+
+    NETWORK
+    data_received..................: 1.4 GB  4.7 MB/s
+    data_sent......................: 2.0 GB  6.4 MB/s
+
+
+
+
+running (5m10.0s), 00/75 VUs, 7031557 complete and 0 interrupted iterations
+go_cpu       ✓ [======================================] 00/50 VUs  1m40s
+dotnet_cpu   ✓ [======================================] 00/50 VUs  1m40s
+dotnet11_cpu ✓ [======================================] 00/50 VUs  1m40s
+THB-ARG-2076:dotnet-vs-go gungorf$ k6 run k6/io-test.js
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: k6/io-test.js
+        output: -
+
+     scenarios: (100.00%) 3 scenarios, 150 max VUs, 5m40s max duration (incl. graceful stop):
+              * go_io: Up to 100 looping VUs for 1m40s over 3 stages (gracefulRampDown: 30s, gracefulStop: 30s)
+              * dotnet_io: Up to 100 looping VUs for 1m40s over 3 stages (gracefulRampDown: 30s, startTime: 1m45s, gracefulStop: 30s)
+              * dotnet11_io: Up to 100 looping VUs for 1m40s over 3 stages (gracefulRampDown: 30s, startTime: 3m30s, gracefulStop: 30s)
+
+
+
+  █ THRESHOLDS 
+
+    http_req_duration{scenario:dotnet_io}
+    ✓ 'p(95)<1000' p(95)=15.77ms
+
+    http_req_duration{scenario:dotnet11_io}
+    ✓ 'p(95)<1000' p(95)=17.92ms
+
+    http_req_duration{scenario:go_io}
+    ✓ 'p(95)<1000' p(95)=3.97ms
+
+    http_req_failed{scenario:dotnet_io}
+    ✓ 'rate<0.01' rate=0.00%
+
+    http_req_failed{scenario:dotnet11_io}
+    ✓ 'rate<0.01' rate=0.02%
+
+    http_req_failed{scenario:go_io}
+    ✓ 'rate<0.01' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 6100921 19679.900991/s
+    checks_succeeded...: 99.99%  6100616 out of 6100921
+    checks_failed......: 0.00%   305 out of 6100921
+
+    ✗ status 200
+      ↳  99% — ✓ 6100616 / ✗ 305
+
+    HTTP
+    http_req_duration..............: avg=3.9ms  min=152µs    med=2.84ms max=1.01s    p(90)=5.63ms p(95)=7.6ms  
+      { expected_response:true }...: avg=3.88ms min=152µs    med=2.84ms max=1.01s    p(90)=5.62ms p(95)=7.6ms  
+      { scenario:dotnet_io }.......: avg=5.31ms min=342µs    med=3.61ms max=588.5ms  p(90)=7ms    p(95)=15.77ms
+      { scenario:dotnet11_io }.....: avg=5.82ms min=402µs    med=4.04ms max=1.01s    p(90)=8.48ms p(95)=17.92ms
+      { scenario:go_io }...........: avg=2.43ms min=152µs    med=2.47ms max=131.54ms p(90)=3.42ms p(95)=3.97ms 
+    http_req_failed................: 0.00%   305 out of 6100921
+      { scenario:dotnet_io }.......: 0.00%   0 out of 1496696
+      { scenario:dotnet11_io }.....: 0.02%   305 out of 1365891
+      { scenario:go_io }...........: 0.00%   0 out of 3238334
+    http_reqs......................: 6100921 19679.900991/s
+
+    EXECUTION
+    iteration_duration.............: avg=3.93ms min=166.54µs med=2.87ms max=1.01s    p(90)=5.66ms p(95)=7.65ms 
+    iterations.....................: 6100921 19679.900991/s
+    vus............................: 1       min=0              max=100
+    vus_max........................: 150     min=150            max=150
+
+    NETWORK
+    data_received..................: 1.2 GB  3.8 MB/s
+    data_sent......................: 507 MB  1.6 MB/s
+
+
+
+
+running (5m10.0s), 000/150 VUs, 6100921 complete and 0 interrupted iterations
+go_io       ✓ [======================================] 000/100 VUs  1m40s
+dotnet_io   ✓ [======================================] 000/100 VUs  1m40s
+dotnet11_io ✓ [======================================] 000/100 VUs  1m40s
+THB-ARG-2076:dotnet-vs-go gungorf$ k6 run k6/concurrency-test.js
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: k6/concurrency-test.js
+        output: -
+
+     scenarios: (100.00%) 3 scenarios, 1500 max VUs, 5m40s max duration (incl. graceful stop):
+              * go_concurrency: Up to 1000 looping VUs for 1m40s over 3 stages (gracefulRampDown: 30s, gracefulStop: 30s)
+              * dotnet_concurrency: Up to 1000 looping VUs for 1m40s over 3 stages (gracefulRampDown: 30s, startTime: 1m45s, gracefulStop: 30s)
+              * dotnet11_concurrency: Up to 1000 looping VUs for 1m40s over 3 stages (gracefulRampDown: 30s, startTime: 3m30s, gracefulStop: 30s)
+
+
+
+  █ THRESHOLDS 
+
+    http_req_duration{scenario:dotnet_concurrency}
+    ✓ 'p(95)<5000' p(95)=162.66ms
+
+    http_req_duration{scenario:dotnet11_concurrency}
+    ✓ 'p(95)<5000' p(95)=547.58ms
+
+    http_req_duration{scenario:go_concurrency}
+    ✓ 'p(95)<5000' p(95)=42.63ms
+
+    http_req_failed{scenario:dotnet_concurrency}
+    ✓ 'rate<0.05' rate=0.00%
+
+    http_req_failed{scenario:dotnet11_concurrency}
+    ✓ 'rate<0.05' rate=0.02%
+
+    http_req_failed{scenario:go_concurrency}
+    ✓ 'rate<0.05' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 5045195 16274.327736/s
+    checks_succeeded...: 99.99%  5045031 out of 5045195
+    checks_failed......: 0.00%   164 out of 5045195
+
+    ✗ status 200
+      ↳  99% — ✓ 5045031 / ✗ 164
+
+    HTTP
+    http_req_duration.....................: avg=47.53ms  min=179µs    med=27.5ms  max=3.48s    p(90)=83.95ms  p(95)=151.02ms
+      { expected_response:true }..........: avg=47.51ms  min=179µs    med=27.5ms  max=3.48s    p(90)=83.93ms  p(95)=150.89ms
+      { scenario:dotnet_concurrency }.....: avg=60.33ms  min=365µs    med=42.17ms max=2.7s     p(90)=109.86ms p(95)=162.66ms
+      { scenario:dotnet11_concurrency }...: avg=151.67ms min=448µs    med=57.24ms max=3.48s    p(90)=410.7ms  p(95)=547.58ms
+      { scenario:go_concurrency }.........: avg=25ms     min=179µs    med=26.31ms max=174.06ms p(90)=36.89ms  p(95)=42.63ms 
+    http_req_failed.......................: 0.00%   164 out of 5045195
+      { scenario:dotnet_concurrency }.....: 0.00%   35 out of 1324671
+      { scenario:dotnet11_concurrency }...: 0.02%   129 out of 527841
+      { scenario:go_concurrency }.........: 0.00%   0 out of 3192683
+    http_reqs.............................: 5045195 16274.327736/s
+
+    EXECUTION
+    iteration_duration....................: avg=47.59ms  min=194.08µs med=27.54ms max=3.48s    p(90)=84.02ms  p(95)=151.18ms
+    iterations............................: 5045195 16274.327736/s
+    vus...................................: 8       min=0              max=1000
+    vus_max...............................: 1500    min=1500           max=1500
+
+    NETWORK
+    data_received.........................: 950 MB  3.1 MB/s
+    data_sent.............................: 419 MB  1.4 MB/s
+
+
+
+
+running (5m10.0s), 0000/1500 VUs, 5045195 complete and 0 interrupted iterations
+go_concurrency       ✓ [======================================] 0000/1000 VUs  1m40s
+dotnet_concurrency   ✓ [======================================] 0000/1000 VUs  1m40s
+dotnet11_concurrency ✓ [======================================] 0000/1000 VUs  1m40s
